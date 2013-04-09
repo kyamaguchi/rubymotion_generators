@@ -31,6 +31,8 @@ module RubymotionGenerators
       when 'svapp'
         generate_single_view_app_delegate
         generate_view_controller 'example'
+      when 'bundler'
+        generate_gemfile_and_change_rakefile
       else
         puts "Invalid template name '#{template_name}'"
         exit 1
@@ -77,6 +79,11 @@ module RubymotionGenerators
 
     def generate_single_view_app_delegate
       template 'templates/single_view_app_delegate.rb', "app/app_delegate.rb"
+    end
+
+    def generate_gemfile_and_change_rakefile
+      insert_into_file "Rakefile", "\nrequire 'bundler/setup'\nBundler.require", :after => "require 'motion/project'"
+      template 'templates/Gemfile', "Gemfile"
     end
 
     def self.source_root
