@@ -82,7 +82,7 @@ module RubymotionGenerators
     end
 
     def generate_gemfile_and_change_rakefile
-      insert_into_file "Rakefile", "\nrequire 'bundler/setup'\nBundler.require", :after => "require 'motion/project'"
+      insert_into_file "Rakefile", "\nrequire 'bundler/setup'\nBundler.require", :after => %r{require 'motion/project(/template/[^']+)'}
       template 'templates/Gemfile', "Gemfile"
     end
 
