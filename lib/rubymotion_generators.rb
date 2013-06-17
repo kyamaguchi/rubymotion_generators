@@ -1,4 +1,4 @@
-require "rubymotion_generators/version"
+require_relative "rubymotion_generators/version"
 require 'thor'
 
 module RubymotionGenerators
